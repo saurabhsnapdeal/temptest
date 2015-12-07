@@ -1,0 +1,54 @@
+FORMAT: 1A
+HOST: http://ap1.spiderlog.net 
+
+# Spider Log API
+Provide Services for the Spider Log App family, recording the Spider sightings.
+
+# Group Spiders
+Access to Spider resources
+
+## My Spiders [/spiders{?page,size}]
+### Get all my spiders sightings [GET]
+
++ Parameters
+    + page (required, number, `1`)... 'page' number
+    + size (required, number, `1` )... page 'size'
+
++ Request
+
+    + Header
+    
+            Authorization: Basic c2F1cmFiaDpzYXVyYWJo
+            myCustomHeaderParam-api-versio: 1.0
+        
++   Response 200 (application/json)
+
+    + Header
+    
+            E-Tag: "skdbsabdvkjjnasdknvask"
+            cache-control: max-age=600
+            
+    + Body
+    
+            {
+                "page": {
+                    "number": 1,
+                    "size": 10,
+                    "total pages": 20
+                },
+                "spiders": [
+                    {
+                        "firstName": "John",
+                        "lastName": "Doe"
+                    },
+                    {
+                        "firstName": "Anna",
+                        "lastName": "Smith"
+                    },
+                    {
+                        "firstName": "Peter",
+                        "lastName": "Jones"
+                    }
+                ]
+            }
+    
