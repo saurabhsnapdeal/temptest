@@ -1,0 +1,142 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {
+			"name": "Contact Email"
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [{
+		"name": "hello-controller",
+		"description": "Hello Controller"
+	}],
+	"paths": {
+		"/promoted/listIds": {
+			"get": {
+				"tags": ["hello-controller"],
+				"summary": "getAllPromotedUserIds",
+				"operationId": "getAllPromotedUserIdsUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "integer",
+								"format": "int64"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/{uid}/promoted{?uid}": {
+			"get": {
+				"tags": ["hello-controller"],
+				"summary": "getPromotedUser",
+				"operationId": "getPromotedUserUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "uid",
+					"in": "path",
+					"description": "uid",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/PromotedUserDTO"
+						}
+
+					}
+				}
+			},
+			"put": {
+				"tags": ["hello-controller"],
+				"summary": "createPromoteUser",
+				"operationId": "createPromoteUserUsingPUT",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "uid",
+					"in": "path",
+					"description": "uid",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": ["hello-controller"],
+				"summary": "deletePromoteUser",
+				"operationId": "deletePromoteUserUsingDELETE",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "uid",
+					"in": "path",
+					"description": "uid",
+					"required": true,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Response": {
+			"properties": {
+				"message": {
+					"type": "string"
+				},
+				"responseCode": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"PromotedUserDTO": {
+			"properties": {
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"uid": {
+					"type": "integer",
+					"format": "int64"
+				}
+			}
+		}
+	}
+}
